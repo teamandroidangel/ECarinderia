@@ -14,20 +14,30 @@
         android:layout_height="wrap_content"
         android:text="VIEW ORDERS"
         android:id="@+id/button"
-        android:layout_centerVertical="true"
+        android:onClick="onViewOrders"
+        android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true"
-        android:onClick="onViewOrders" />
+        android:layout_marginTop="105dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="MENU LIST"
         android:id="@+id/button2"
+        android:onClick="onListMenu"
         android:layout_below="@+id/button"
-        android:layout_marginTop="44dp"
-        android:layout_alignEnd="@+id/button"
-        android:layout_alignStart="@+id/button"
-        android:onClick="onListMenu" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="26dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD ORDER"
+        android:id="@+id/button3"
+        android:onClick="onCreateOrder"
+        android:layout_below="@+id/button2"
+        android:layout_alignStart="@+id/button2"
+        android:layout_marginTop="34dp" />
 
     <TextView
         android:layout_width="wrap_content"

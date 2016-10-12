@@ -27,4 +27,14 @@ public class NavigationActivity extends Activity {
         startActivityForResult(i, REQUEST_CODE);
         finish();
     }
+
+    public void onCreateOrder(View view) {
+        Intent i = new Intent(NavigationActivity.this, CreateOrderActivity.class);
+        startActivityForResult(i, REQUEST_CODE);
+        finish();
+    }
+
+
+
+
 }
