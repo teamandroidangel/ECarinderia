@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class MenuItemArrayAdapter  extends ArrayAdapter<MenuItem> {

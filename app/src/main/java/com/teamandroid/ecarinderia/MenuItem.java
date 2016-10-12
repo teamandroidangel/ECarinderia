@@ -9,7 +9,8 @@ public class MenuItem extends  Object implements Serializable {
     private Double price = 0.00;
     private Integer quantity = 0;
     private Long id;
-    private String imageUrl = "http://www.birchstreet.net/wp-content/uploads/2014/08/restaurant-icon-4.png";
+    //private String imageUrl = "http://www.birchstreet.net/wp-content/uploads/2014/08/restaurant-icon-4.png";
+    private String imageUrl;
 
     public MenuItem() {
         // A default constructor is required.

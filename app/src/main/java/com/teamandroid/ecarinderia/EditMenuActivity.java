@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Bitmap;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.nfc.Tag;
 import android.os.Build;
@@ -41,6 +42,7 @@ public class EditMenuActivity extends AppCompatActivity {
     int code;
 
     String mCurrentPhotoPath;
+    File mCurrentPhotoFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,17 +92,17 @@ public class EditMenuActivity extends AppCompatActivity {
         // Ensure that there's a camera activity to handle the intent
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             // Create the File where the photo should go
-            File photoFile = null;
+            mCurrentPhotoFile = null;
             try {
-                photoFile = createImageFile();
+                mCurrentPhotoFile = createImageFile();
             } catch (IOException ex) {
 
             }
             // Continue only if the File was successfully created
-            if (photoFile != null) {
+            if (mCurrentPhotoFile != null) {
                 Uri photoURI = FileProvider.getUriForFile(this,
                         "com.teamandroid.ecarinderia.fileprovider",
-                        photoFile);
+                        mCurrentPhotoFile);
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
@@ -109,10 +111,22 @@ public class EditMenuActivity extends AppCompatActivity {
 
     private void galleryAddPic() {
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mCurrentPhotoPath);
+        File f = mCurrentPhotoFile!=null ? mCurrentPhotoFile : new File(mCurrentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);
+        sendBroadcast(mediaScanIntent);
+
+        //MediaScannerConnection.scanFile(this, new String[] { mCurrentPhotoFile.getPath() }, new String[] { "image/jpeg" }, null);
+    }
+
+    public String getRealPathFromURI(Uri uri) {
+        String[] projection = { MediaStore.Images.Media.DATA };
+        @SuppressWarnings("deprecation")
+        Cursor cursor = managedQuery(uri, projection, null, null, null);
+        int column_index = cursor
+                .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+        return cursor.getString(column_index);
     }
 
 
@@ -137,20 +151,24 @@ public class EditMenuActivity extends AppCompatActivity {
 
             try {
 
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
 
 
-                ImageView imageView = (ImageView) findViewById(R.id.picView);
-                imageView.setImageBitmap(bitmap);
+                //ImageView imageView = (ImageView) findViewById(R.id.picView);
+                //imageView.setImageBitmap(bitmap);
+
+                Uri selectedImageUri = data.getData();
+                mCurrentPhotoPath = getRealPathFromURI(selectedImageUri);
 
 
-            } catch (IOException e) {
+
+            } catch (Exception e) {
                 e.printStackTrace();
             }
 
 
 
-            //Picasso.with(this).load(mCurrentPhotoPath).into(menuImage);
+            Picasso.with(this).load(mCurrentPhotoPath).into(menuImage);
         }
     }
 
@@ -159,6 +177,7 @@ public class EditMenuActivity extends AppCompatActivity {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        //File storageDir =getFilesDir();
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
                 ".jpg",         /* suffix */
@@ -179,6 +198,7 @@ public class EditMenuActivity extends AppCompatActivity {
         item.setName(nameText.getText().toString());
         item.setPrice(Double.parseDouble(priceText.getText().toString()));
         item.setQuantity(Integer.parseInt(quantityText.getText().toString()));
+        item.setImageUrl(mCurrentPhotoPath);
 
         Intent data = new Intent();
 
