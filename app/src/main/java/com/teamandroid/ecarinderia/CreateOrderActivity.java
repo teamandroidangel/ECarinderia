@@ -73,15 +73,45 @@ public class CreateOrderActivity extends AppCompatActivity {
     }
 
     private void writeItem(MenuItem item) {
-        String stringMenuItem = item.serialize();
 
-        stringMenuItem+="|PROCESSING";
+        if(item.getQuantity()>0){
 
-        OrderItem newOrder = new OrderItem();
-        newOrder.deserialize(stringMenuItem);
-        newOrder.setQuantity(1);
-        orders.add(newOrder);
-        updateOrders();
+            String stringMenuItem = item.serialize();
+
+            stringMenuItem+="|PROCESSING";
+
+            OrderItem newOrder = new OrderItem();
+            newOrder.deserialize(stringMenuItem);
+            newOrder.setQuantity(1);
+            orders.add(newOrder);
+            updateOrders();
+
+            item.setQuantity(item.getQuantity()-1);
+            updateMenuWithQuantity();
+
+        }else{
+
+            Toast.makeText(this, item.getName() +" IS OUT OF STOCK", Toast.LENGTH_SHORT).show();
+
+        }
+
+
+    }
+
+
+    private void updateMenuWithQuantity() {
+        File filesDir = getFilesDir();
+        File todoFile = new File(filesDir, "all_menus.txt");
+        try{
+            ArrayList<String> stringItems = new ArrayList<String>();
+
+            for (MenuItem item: items) {
+                stringItems.add(item.serialize());
+            }
+            FileUtils.writeLines(todoFile, stringItems);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     private void readItems() {
