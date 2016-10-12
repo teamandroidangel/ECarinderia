@@ -81,7 +81,7 @@ public class MenuListActivity extends AppCompatActivity {
 
     private void readItems() {
         File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "itemmenus.txt");
+        File todoFile = new File(filesDir, "all_menus.txt");
         try{
             ArrayList<String> stringItems = new ArrayList<String>(FileUtils.readLines(todoFile));
             items = new ArrayList<MenuItem>();
@@ -99,7 +99,7 @@ public class MenuListActivity extends AppCompatActivity {
 
     private void writeItems() {
         File filesDir = getFilesDir();
-        File todoFile = new File(filesDir, "itemmenus.txt");
+        File todoFile = new File(filesDir, "all_menus.txt");
         try{
             ArrayList<String> stringItems = new ArrayList<String>();
 

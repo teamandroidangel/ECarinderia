@@ -30,16 +30,26 @@
             android:layout_alignTop="@+id/orderBackBtn"
             android:layout_toEndOf="@+id/nameLabel" />
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BACK"
+            android:id="@+id/orderBackBtn"
+            android:onClick="onBackFromOrder"
+            android:layout_alignBottom="@+id/orderListToolbar"
+            android:layout_alignEnd="@+id/orderListToolbar" />
+
     </android.support.v7.widget.Toolbar>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+
+
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="BACK"
-        android:id="@+id/orderBackBtn"
-        android:onClick="onBackFromOrder"
-        android:layout_alignBottom="@+id/orderListToolbar"
-        android:layout_alignEnd="@+id/orderListToolbar" />
+        android:id="@+id/lvItems"
+        android:choiceMode="singleChoice"
+        android:layout_below="@+id/etNewItem"
+        android:layout_alignLeft="@+id/orderListToolbar" />
 
 </RelativeLayout>
