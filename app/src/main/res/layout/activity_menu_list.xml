@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.teamandroid.ecarinderia.MenuListActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/menuListToolbar"
+        android:layout_width="fill_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:elevation="2dp"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="ECarinderia - Menu List"
+            android:id="@+id/EditLabel"
+            android:layout_alignTop="@+id/backBtn"
+            android:layout_toEndOf="@+id/nameLabel" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/btnAddItem"
+        android:onClick="onAddItem"
+        android:layout_above="@+id/lvItems"
+        android:layout_alignEnd="@+id/lvItems" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etNewItem"
+        android:inputType="text"
+        android:layout_below="@+id/menuListToolbar"
+        android:layout_alignStart="@+id/lvItems"
+        android:layout_marginTop="22dp"
+        android:layout_toStartOf="@+id/menuListBackBtn" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lvItems"
+        android:choiceMode="singleChoice"
+        android:layout_below="@+id/etNewItem"
+        android:layout_alignLeft="@+id/menuListToolbar" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BACK"
+        android:id="@+id/menuListBackBtn"
+        android:onClick="onBack"
+        android:layout_above="@+id/etNewItem"
+        android:layout_alignEnd="@+id/menuListToolbar" />
+
+
+</RelativeLayout>
