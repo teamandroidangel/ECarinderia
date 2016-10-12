@@ -30,6 +30,16 @@
             android:layout_alignTop="@+id/backBtn"
             android:layout_toEndOf="@+id/nameLabel" />
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="BACK"
+            android:id="@+id/menuListBackBtn"
+            android:onClick="onBack"
+            android:layout_above="@+id/etNewItem"
+            android:layout_alignEnd="@+id/menuListToolbar" />
+
     </android.support.v7.widget.Toolbar>
 
     <Button
@@ -49,8 +59,7 @@
         android:inputType="text"
         android:layout_below="@+id/menuListToolbar"
         android:layout_alignStart="@+id/lvItems"
-        android:layout_marginTop="22dp"
-        android:layout_toStartOf="@+id/menuListBackBtn" />
+        android:layout_marginTop="22dp" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -60,15 +69,7 @@
         android:layout_below="@+id/etNewItem"
         android:layout_alignLeft="@+id/menuListToolbar" />
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="BACK"
-        android:id="@+id/menuListBackBtn"
-        android:onClick="onBack"
-        android:layout_above="@+id/etNewItem"
-        android:layout_alignEnd="@+id/menuListToolbar" />
+
 
 
 </RelativeLayout>
