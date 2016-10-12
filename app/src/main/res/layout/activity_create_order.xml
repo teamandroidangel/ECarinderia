@@ -48,7 +48,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/orderItems"
         android:choiceMode="singleChoice"
-        android:layout_below="@+id/etNewItem"
-        android:layout_alignLeft="@+id/createOrderToolbar" />
+        android:layout_alignLeft="@+id/createOrderToolbar"
+        android:layout_below="@+id/createOrderToolbar" />
 
 </RelativeLayout>

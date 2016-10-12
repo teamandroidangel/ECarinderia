@@ -56,8 +56,8 @@ public class OrderItemArrayAdapter  extends ArrayAdapter<OrderItem> {
         OrderItem item = data.get(position);
         holder.itemName.setText(item.getName());
         holder.itemPrice.setText("PRICE: PhP " + Double.toString(item.getPrice()));
-        holder.itemQuantity.setText("AVAILABLE ORDERS: " + Integer.toString(item.getQuantity()));
-        holder.itemStatus.setText("AVAILABLE ORDERS: " + Integer.toString(item.getQuantity()));
+        holder.itemQuantity.setText("QUANTITY: " + Integer.toString(item.getQuantity()));
+        holder.itemStatus.setText("STATUS: " + item.getOrderStatus());
         Picasso.with(context).load(item.getImageUrl()).into(holder.imgIcon);
 
 

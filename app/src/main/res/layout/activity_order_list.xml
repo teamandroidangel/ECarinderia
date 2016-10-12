@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/lvItems"
         android:choiceMode="singleChoice"
-        android:layout_below="@+id/etNewItem"
-        android:layout_alignLeft="@+id/orderListToolbar" />
+        android:layout_alignLeft="@+id/orderListToolbar"
+        android:layout_below="@+id/orderListToolbar" />
 
 </RelativeLayout>

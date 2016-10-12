@@ -79,6 +79,7 @@ public class CreateOrderActivity extends AppCompatActivity {
 
         OrderItem newOrder = new OrderItem();
         newOrder.deserialize(stringMenuItem);
+        newOrder.setQuantity(1);
         orders.add(newOrder);
         updateOrders();
     }
