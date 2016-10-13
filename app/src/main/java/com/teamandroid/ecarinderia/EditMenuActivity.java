@@ -63,6 +63,7 @@ public class EditMenuActivity extends AppCompatActivity {
         nameText.setText(item.getName());
         priceText.setText(Double.toString(item.getPrice()));
         quantityText.setText(Integer.toString(item.getQuantity()));
+        mCurrentPhotoPath = item.getImageUrl();
 
         Picasso.with(this).load(item.getImageUrl()).into(menuImage);
 
