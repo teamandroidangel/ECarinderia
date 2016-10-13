@@ -109,6 +109,10 @@ public class CreateOrderActivity extends AppCompatActivity {
                 stringItems.add(item.serialize());
             }
             FileUtils.writeLines(todoFile, stringItems);
+
+
+            orderItems.invalidateViews();
+
         }catch (IOException e){
             e.printStackTrace();
         }
