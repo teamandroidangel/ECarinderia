@@ -1,8 +1,8 @@
 package com.teamandroid.ecarinderia;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -16,7 +16,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class MenuListActivity extends AppCompatActivity {
+public class MenuListActivity extends Activity {
 
     ArrayList<MenuItem> items;
     MenuItemArrayAdapter itemsAdapter;
