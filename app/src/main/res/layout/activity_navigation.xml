@@ -15,9 +15,8 @@
         android:text="VIEW ORDERS"
         android:id="@+id/button"
         android:onClick="onViewOrders"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="105dp" />
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -26,8 +25,7 @@
         android:id="@+id/button2"
         android:onClick="onListMenu"
         android:layout_below="@+id/button"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="26dp" />
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -35,9 +33,8 @@
         android:text="ADD ORDER"
         android:id="@+id/button3"
         android:onClick="onCreateOrder"
-        android:layout_below="@+id/button2"
-        android:layout_alignStart="@+id/button2"
-        android:layout_marginTop="34dp" />
+        android:layout_below="@+id/textView3"
+        android:layout_alignStart="@+id/button2" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -50,4 +47,24 @@
         android:layout_marginTop="70dp"
         android:textSize="40dp"
         android:textColor="@android:color/holo_red_dark" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="SELLER:"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="39dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="BUYER:"
+        android:id="@+id/textView3"
+        android:layout_marginTop="39dp"
+        android:layout_below="@+id/button2"
+        android:layout_alignEnd="@+id/textView2" />
 </RelativeLayout>
