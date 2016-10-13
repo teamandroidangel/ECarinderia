@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import org.apache.commons.io.FileUtils;
@@ -29,7 +30,55 @@ public class OrderListActivity extends AppCompatActivity {
         readItems();
         itemsAdapter = new OrderItemArrayAdapter(this,R.layout.activity_order_list_item, orders);
         lvItems.setAdapter(itemsAdapter);
+        setupListViewListener();
+    }
 
+    private void setupListViewListener() {
+        lvItems.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                        orders.remove(position);
+                        itemsAdapter.notifyDataSetChanged();
+                        writeItems();
+                        return true;
+                    }
+                }
+        );
+
+        lvItems.setOnItemClickListener(
+                new AdapterView.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        OrderItem selectedOrder = (OrderItem) parent.getItemAtPosition(position);
+                        if(selectedOrder.getOrderStatus()=="PROCESSING") {
+                            selectedOrder.setOrderStatus("ACCEPTED");
+                        }else if(selectedOrder.getOrderStatus()=="ACCEPTED"){
+                            selectedOrder.setOrderStatus("PROCESSED");
+                        }
+
+                        writeItems();
+
+                        lvItems.invalidateViews();
+
+                    }
+                }
+        );
+    }
+
+    private void writeItems() {
+        File filesDir = getFilesDir();
+        File todoFile = new File(filesDir, "all_orders.txt");
+        try{
+            ArrayList<String> stringItems = new ArrayList<String>();
+
+            for (OrderItem item: orders) {
+                stringItems.add(item.serialize());
+            }
+            FileUtils.writeLines(todoFile, stringItems);
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
     public void onBackFromOrder(View view) {
